@@ -16,6 +16,18 @@ export function TaskList() {
 
   function handleCreateNewTask() {
     // Crie uma nova task com um id random, não permita criar caso o título seja vazio.
+    if (!newTaskTitle) return(
+      alert('Please write your task!')
+    )
+
+    const newTask = {
+      id: Date.now(),
+      title: newTaskTitle,
+      isComplete: false,
+    }
+
+    setTasks(oldState => [...oldState, newTask])
+    setNewTaskTitle('')
   }
 
   function handleToggleTaskCompletion(id: number) {
@@ -29,7 +41,7 @@ export function TaskList() {
   return (
     <section className="task-list container">
       <header>
-        <h2>Minhas tasks</h2>
+        <h2>My tasks</h2>
 
         <div className="input-group">
           <input 
